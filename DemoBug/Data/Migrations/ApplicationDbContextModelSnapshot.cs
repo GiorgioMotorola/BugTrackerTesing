@@ -33,6 +33,9 @@ namespace DemoBug.Data.Migrations
                     b.Property<int?>("AssignedUserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -40,6 +43,9 @@ namespace DemoBug.Data.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("severity")
+                        .HasColumnType("int");
 
                     b.HasKey("BugId");
 

@@ -36,10 +36,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVnc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/downw/Desktop/projects/DemoBug/DemoBug/Views/Bugs/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVnc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/downw/Desktop/projects/DemoBug/DemoBug/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -87,6 +83,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/downw/Desktop/projects/DemoBug/DemoBug/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/downw/Desktop/projects/DemoBug/DemoBug/Views/Bugs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnVnc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-eoukzrby4h
 
 [C:/Users/downw/Desktop/projects/DemoBug/DemoBug/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s

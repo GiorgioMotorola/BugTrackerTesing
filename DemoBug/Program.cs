@@ -20,6 +20,8 @@ namespace DemoBug
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2VFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5WdEdiUXtbcXJdQ2Zb");
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

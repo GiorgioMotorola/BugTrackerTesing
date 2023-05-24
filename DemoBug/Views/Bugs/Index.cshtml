@@ -6,6 +6,23 @@
 
 <h1>Index</h1>
 
+
+
+<div id="chartContainer">
+    <ejs-accumulationchart id="container" title="Bugs">
+        <e-accumulationchart-legendsettings visible="false">
+        </e-accumulationchart-legendsettings>
+        <e-accumulation-series-collection>
+            <e-accumulation-series dataSource="ViewBag.dataSource" xName="severity" yName="Count" name="severity"
+                                   pointColorMapping="fill">
+                <e-accumulationseries-datalabel name="text" visible="true">
+                </e-accumulationseries-datalabel>
+            </e-accumulation-series>
+        </e-accumulation-series-collection>
+    </ejs-accumulationchart>
+</div>
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -19,29 +36,43 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.severity)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.AssignedUser)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedUser.Username)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BugId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BugId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BugId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        { 
+            
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.severity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedUser.Username)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BugId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BugId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BugId">Delete</a>
+
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+
+
+

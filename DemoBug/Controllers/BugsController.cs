@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DemoBug.Data;
 using DemoBug.Models;
+using Nancy.Json;
+using Humanizer;
+using Syncfusion.EJ2.Notifications;
 
 namespace DemoBug.Controllers
 {
@@ -22,9 +25,21 @@ namespace DemoBug.Controllers
         // GET: Bugs
         public async Task<IActionResult> Index()
         {
+            var groupedData = await _context.Bugs
+                .GroupBy(bug => bug.severity)
+                .Select(group => new Bug
+                {
+                    severity = group.Key,
+                    Count = group.Count()
+                })
+                .ToListAsync();
+
+            ViewBag.dataSource = groupedData;
+
             var applicationDbContext = _context.Bugs.Include(b => b.AssignedUser);
             return View(await applicationDbContext.ToListAsync());
         }
+
 
         // GET: Bugs/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -49,7 +64,7 @@ namespace DemoBug.Controllers
         public IActionResult Create()
         {
             ViewData["AssignedUserId"] = new SelectList(_context.Users, "UserId", "Username");
-            return View();
+            return View(new Bug());
         }
 
         // POST: Bugs/Create
@@ -57,7 +72,7 @@ namespace DemoBug.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BugId,Title,Description,AssignedUserId")] Bug bug)
+        public async Task<IActionResult> Create([Bind("BugId,Title,Description, severity, AssignedUserId")] Bug bug)
         {
             if (ModelState.IsValid)
             {
@@ -65,16 +80,6 @@ namespace DemoBug.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            //// If the ModelState is not valid, retrieve the validation errors
-            //var validationErrors = ModelState.Values.SelectMany(v => v.Errors)
-            //                                        .Select(e => e.ErrorMessage);
-            //// Log or display the validation errors for debugging
-            //foreach (var error in validationErrors)
-            //{
-            //    // Log or display the error message
-            //    Console.WriteLine(error);
-            //}
 
             ViewData["AssignedUserId"] = new SelectList(_context.Users, "UserId", "UserId", bug.AssignedUserId);
             return View(bug);
@@ -97,12 +102,9 @@ namespace DemoBug.Controllers
             return View(bug);
         }
 
-        // POST: Bugs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BugId,Title,Description,AssignedUserId")] Bug bug)
+        public async Task<IActionResult> Edit(int id, [Bind("BugId,Title,Description, severity, AssignedUserId")] Bug bug)
         {
             if (id != bug.BugId)
             {
@@ -175,5 +177,7 @@ namespace DemoBug.Controllers
         {
           return (_context.Bugs?.Any(e => e.BugId == id)).GetValueOrDefault();
         }
+
+
     }
 }

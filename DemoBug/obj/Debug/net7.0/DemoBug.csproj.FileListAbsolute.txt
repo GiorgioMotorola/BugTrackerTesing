@@ -283,3 +283,8 @@ C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\refint\DemoBug.
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\DemoBug.pdb
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\DemoBug.genruntimeconfig.cache
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\ref\DemoBug.dll
+C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Nancy.dll
+C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Syncfusion.EJ2.dll
+C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Syncfusion.Licensing.dll
+C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\scopedcss\Views\Bugs\Index.cshtml.rz.scp.css

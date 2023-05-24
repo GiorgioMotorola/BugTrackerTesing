@@ -1,4 +1,5 @@
-﻿@model DemoBug.Models.Bug
+﻿@using DemoBug.Enums;
+@model DemoBug.Models.Bug
 
 @{
     ViewData["Title"] = "Create";
@@ -12,27 +13,27 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+            <div class="mb-3">
+                <ejs-textbox id="title" placeholder="Title" ejs-for="@Model.Title" floatLabelType="Always"></ejs-textbox>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <div class="mb-3">
+                <ejs-textbox id="description" placeholder="Description" ejs-for="@Model.Description" floatLabelType="Always"></ejs-textbox>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AssignedUser" class="control-label"></label>
-                <select asp-for="AssignedUser" class="form-control" asp-items="ViewBag.AssignedUser"></select>
-                <span asp-validation-for="AssignedUser" class="text-danger"></span>
+            <div class="mb-3">
+                <label asp-for="severity" class="control-label"></label>
+                <select asp-for="severity" class="form-control" asp-items="@(new SelectList(Enum.GetValues(typeof(Severity))))"></select>
+                <span asp-validation-for="severity" class="text-danger"></span>
             </div>
-            <div class="form-group">
+
+            <div class="mb-3">
                 <label asp-for="AssignedUserId" class="control-label"></label>
                 <select asp-for="AssignedUserId" class="form-control" asp-items="ViewBag.AssignedUserId"></select>
                 <span asp-validation-for="AssignedUserId" class="text-danger"></span>
+
             </div>
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
