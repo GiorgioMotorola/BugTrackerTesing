@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-
+<a href="Bugs/Create">
+  <button class="create-button" role="button">Create New</button>
+</a>
 
 <div id="chartContainer">
-    <ejs-accumulationchart id="container" title="Bugs">
+    <ejs-accumulationchart id="container" title="">
         <e-accumulationchart-legendsettings visible="false">
         </e-accumulationchart-legendsettings>
         <e-accumulation-series-collection>
@@ -23,55 +24,40 @@
 </div>
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="styled-table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.severity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssignedUser)
-            </th>
-            <th></th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Severity</th>
+            <th>Assigned</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        { 
-            
+        @foreach (var items in Model)
+        {
             <tr>
+                <td>@Html.DisplayFor(modelItem => items.Title)</td>
+                <td>@Html.DisplayFor(modelItem => items.Description)</td>
+                <td>@Html.DisplayFor(modelItem => items.severity)</td>
+                <td>@Html.DisplayFor(modelItem => items.AssignedUser.Username)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.severity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AssignedUser.Username)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.BugId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.BugId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.BugId">Delete</a>
-
-
+                    <div class="button-group">
+                        <button class="action-button-edit" onclick="location.href='@Url.Action("Edit", new { id = items.BugId })'">Edit</button>
+                        <button class="action-button-details" onclick="location.href='@Url.Action("Details", new { id = items.BugId })'">Details</button>
+                        <button class="action-button-delete" onclick="location.href='@Url.Action("Delete", new { id = items.BugId })'">Delete</button>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+
+
 
 
 
