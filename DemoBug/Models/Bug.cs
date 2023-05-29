@@ -9,8 +9,7 @@ namespace DemoBug.Models
         public string Description { get; set; }
         public int Count { get; set; } = 1;
         public Severity severity { get; set; }
-        public int? AssignedUserId { get; set; } 
-
+        public int? AssignedUserId { get; set; }
         public virtual User? AssignedUser { get; set; }
     }
 

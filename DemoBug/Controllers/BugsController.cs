@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DemoBug.Data;
 using DemoBug.Models;
-using Nancy.Json;
-using Humanizer;
-using Syncfusion.EJ2.Notifications;
+using DemoBug.Enums;
 
 namespace DemoBug.Controllers
 {
@@ -24,22 +18,27 @@ namespace DemoBug.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
+
 
             var groupedData = await _context.Bugs
                 .GroupBy(bug => bug.severity)
                 .Select(group => new Bug
                 {
                     severity = group.Key,
-                    Count = group.Count()
+                    Count = group.Count(),
+                    
+
                 })
                 .ToListAsync();
+
+            
 
             ViewBag.dataSource = groupedData;
 
             var applicationDbContext = _context.Bugs.Include(b => b.AssignedUser);
             return View(await applicationDbContext.ToListAsync());
         }
+
 
 
         public async Task<IActionResult> Details(int? id)

@@ -9,18 +9,17 @@
   <button class="create-button" role="button">Create New</button>
 </a>
 
-<div id="chartContainer">
+
+<div class="pie" id="chartContainer">
     <ejs-accumulationchart id="container" title="">
-        <e-accumulationchart-legendsettings visible="false">
-        </e-accumulationchart-legendsettings>
-        <e-accumulation-series-collection>
-            <e-accumulation-series dataSource="ViewBag.dataSource" xName="severity" yName="Count" name="severity"
-                                   pointColorMapping="fill">
-                <e-accumulationseries-datalabel name="text" visible="true">
-                </e-accumulationseries-datalabel>
-            </e-accumulation-series>
-        </e-accumulation-series-collection>
-    </ejs-accumulationchart>
+    <e-accumulationchart-legendsettings visible="false">
+    </e-accumulationchart-legendsettings>
+    <e-accumulation-series-collection>
+            <e-accumulation-series dataSource="ViewBag.dataSource" xName="severity" yName="Count" name="severity" innerRadius="35%">
+        </e-accumulation-series>
+    </e-accumulation-series-collection>
+</ejs-accumulationchart>
+<h3>Testing</h3>
 </div>
 
 

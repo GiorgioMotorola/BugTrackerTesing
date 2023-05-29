@@ -44,6 +44,9 @@ namespace DemoBug.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("fill")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("severity")
                         .HasColumnType("int");
 
