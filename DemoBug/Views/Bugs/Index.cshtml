@@ -4,22 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-
 <a href="Bugs/Create">
-  <button class="create-button" role="button">Create New</button>
+    <button class="create-button" role="button">Create New</button>
 </a>
 
 
 <div class="pie" id="chartContainer">
     <ejs-accumulationchart id="container" title="">
-    <e-accumulationchart-legendsettings visible="false">
-    </e-accumulationchart-legendsettings>
-    <e-accumulation-series-collection>
+        <e-accumulationchart-legendsettings visible="false">
+        </e-accumulationchart-legendsettings>
+        <e-accumulation-series-collection>
             <e-accumulation-series dataSource="ViewBag.dataSource" xName="severity" yName="Count" name="severity" innerRadius="35%">
-        </e-accumulation-series>
-    </e-accumulation-series-collection>
-</ejs-accumulationchart>
-<h3>Testing</h3>
+            </e-accumulation-series>
+        </e-accumulation-series-collection>
+    </ejs-accumulationchart>
+    <h3>Testing</h3>
 </div>
 
 
@@ -29,8 +28,11 @@
             <th>Title</th>
             <th>Description</th>
             <th>Severity</th>
+            <th>Opened</th>
+            <th>Status</th>
+            <th>Resolved</th>
             <th>Assigned</th>
-            <th>Action</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -40,6 +42,9 @@
                 <td>@Html.DisplayFor(modelItem => items.Title)</td>
                 <td>@Html.DisplayFor(modelItem => items.Description)</td>
                 <td>@Html.DisplayFor(modelItem => items.severity)</td>
+                <td>@Html.DisplayFor(modelItem => items.DateOpened)</td>
+                <td>@Html.DisplayFor(modelItem => items.status)</td>
+                <td>@Html.DisplayFor(modelItem => items.DateResolved)</td>
                 <td>@Html.DisplayFor(modelItem => items.AssignedUser.Username)</td>
                 <td>
                     <div class="button-group">
@@ -52,12 +57,3 @@
         }
     </tbody>
 </table>
-
-
-
-
-
-
-
-
-

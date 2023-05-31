@@ -9,27 +9,33 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="styled-table">
+<table class="table">
     <thead>
         <tr>
-            <th>Username</th>
-            <th>Email</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var items in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => items.Username)</td>
-                <td>@Html.DisplayFor(modelItem => items.Email)</td>
-                <td>
-                    <div class="button-group">
-                        <button class="action-button-edit" onclick="location.href='@Url.Action("Edit", new { id = items.UserId })'">Edit</button>
-                        <button class="action-button-details" onclick="location.href='@Url.Action("Details", new { id = items.UserId })'">Details</button>
-                        <button class="action-button-delete" onclick="location.href='@Url.Action("Delete", new { id = items.UserId })'">Delete</button>
-                    </div>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

@@ -288,4 +288,3 @@ C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Nancy.dll
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Syncfusion.EJ2.dll
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\bin\Debug\net7.0\Syncfusion.Licensing.dll
 C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\scopedcss\Views\Bugs\Index.cshtml.rz.scp.css
-C:\Users\downw\Desktop\projects\DemoBug\DemoBug\obj\Debug\net7.0\scopedcss\Views\Users\Index.cshtml.rz.scp.css

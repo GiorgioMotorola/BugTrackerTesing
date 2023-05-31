@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DemoBug.Data;
 using DemoBug.Models;
-using DemoBug.Enums;
+using System.ComponentModel;
 
 namespace DemoBug.Controllers
 {
@@ -16,22 +20,17 @@ namespace DemoBug.Controllers
             _context = context;
         }
 
+        // GET: Bugs
         public async Task<IActionResult> Index()
         {
-
-
             var groupedData = await _context.Bugs
                 .GroupBy(bug => bug.severity)
                 .Select(group => new Bug
                 {
                     severity = group.Key,
                     Count = group.Count(),
-                    
-
                 })
                 .ToListAsync();
-
-            
 
             ViewBag.dataSource = groupedData;
 
@@ -40,7 +39,7 @@ namespace DemoBug.Controllers
         }
 
 
-
+        // GET: Bugs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Bugs == null)
@@ -59,15 +58,19 @@ namespace DemoBug.Controllers
             return View(bug);
         }
 
+        // GET: Bugs/Create
         public IActionResult Create()
         {
-            ViewData["AssignedUserId"] = new SelectList(_context.Users, "UserId", "Username");
-            return View(new Bug());
+            ViewData["AssignedUserId"] = new SelectList(_context.Users, "UserId", "UserId");
+            return View();
         }
 
+        // POST: Bugs/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BugId,Title,Description, severity, AssignedUserId")] Bug bug)
+        public async Task<IActionResult> Create([Bind("BugId,Title,Description,Count,DateOpened,status,DateResolved,severity,AssignedUserId")] Bug bug)
         {
             if (ModelState.IsValid)
             {
@@ -75,11 +78,11 @@ namespace DemoBug.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
             ViewData["AssignedUserId"] = new SelectList(_context.Users, "UserId", "UserId", bug.AssignedUserId);
             return View(bug);
         }
 
+        // GET: Bugs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Bugs == null)
@@ -96,9 +99,12 @@ namespace DemoBug.Controllers
             return View(bug);
         }
 
+        // POST: Bugs/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BugId,Title,Description, severity, AssignedUserId")] Bug bug)
+        public async Task<IActionResult> Edit(int id, [Bind("BugId,Title,Description,Count,DateOpened,status,DateResolved,severity,AssignedUserId")] Bug bug)
         {
             if (id != bug.BugId)
             {
@@ -129,6 +135,7 @@ namespace DemoBug.Controllers
             return View(bug);
         }
 
+        // GET: Bugs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Bugs == null)
@@ -147,6 +154,7 @@ namespace DemoBug.Controllers
             return View(bug);
         }
 
+        // POST: Bugs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -169,11 +177,5 @@ namespace DemoBug.Controllers
         {
           return (_context.Bugs?.Any(e => e.BugId == id)).GetValueOrDefault();
         }
-
-
     }
-    
-
-    
-
 }
